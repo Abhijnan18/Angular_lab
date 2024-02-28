@@ -1,0 +1,32 @@
+<html ng-app="a">
+<head><style>*{text-align:center}.t{margin:auto}</style></head>
+<body ng-controller="b">
+    <h1>Student Details</h1>
+    Enter number of students: <input type="number" ng-model="n">
+    <button ng-click="g()">Generate</button>
+    <table border="1" ng-if="s.length" class="t">
+        <tr><th>SLNO</th><th>NAME</th><th>CGPA</th></tr>
+        <tr ng-repeat="i in s">
+            <td>{{i.SLNO}}</td>
+            <td>{{i.NAME}}</td>
+            <td>{{i.CGPA}}</td>
+        </tr>
+    </table>
+    Number of students : {{s.length}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script>
+        angular.module("a",[])
+        .controller("b", function($scope){
+            $scope.s = [];
+            $scope.g = function(){
+                $scope.s = Array.from({length: $scope.n}, (_, i) => ({
+                    "SLNO": i + 1,
+                    "NAME": "Student-" + (i + 1),
+                    "CGPA": (Math.random() * 10).toFixed(2)
+                }));
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program 5 | AngularJS</title>
+
+    <style>
+        * {
+            text-align: center;
+        }
+        .student-table {
+            padding-top: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="studDetailsApp" ng-controller="studDetailsCtrl">
+        <h1>Student Details Application</h1>
+        Enter number of students to generate data for: <input type="number" ng-model="num">
+        <button ng-click="generate()">Generate</button>
+        <br>
+        <div class="student-table">
+            <table border="1" ng-show="studData.length > 0">
+                <tr>
+                    <th>SLNO</th>
+                    <th>NAME</th>
+                    <th>CGPA</th>
+                </tr>
+                <tr ng-repeat="student in studData">
+                    <td>{{student.SLNO}} </td>
+                    <td>{{student.NAME}} </td>
+                    <td>{{student.CGPA}} </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        Number of students : {{studData.length}}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script>
+        var app = angular.module("studDetailsApp",[]);
+        app.controller("studDetailsCtrl",function($scope){
+            $scope.num = 0;
+            $scope.studData = [];
+
+            $scope.generate = function(){
+                $scope.studData = [];
+                for (let i = 1; i <= $scope.num; i++) {
+                    let stud = {
+                        "SLNO": i,
+                        "NAME": "Student-"+i,
+                        "CGPA": ((Math.random() * (10 - 0)) + 0).toFixed(2)
+                    };
+                    $scope.studData.push(stud);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

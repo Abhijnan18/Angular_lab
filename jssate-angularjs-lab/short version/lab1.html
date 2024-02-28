@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html ng-app="a">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <style>*{text-align:center}</style>
+</head>
+<body ng-controller="b">
+    <p>First Name: <input ng-model="f"></p>
+    <p>Last Name: <input ng-model="l"></p>
+    <p>Full Name: {{f + ' ' + l}}</p>
+
+    <script>angular.module("a",[]).controller("b",function($scope){$scope.f="Khalid";$scope.l="Kashmiri";});</script>
+</body>
+</html>

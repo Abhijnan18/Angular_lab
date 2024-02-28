@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program 6 | AngularJS</title>
+
+    <style>
+
+        * {
+            text-align: center;
+        }
+
+        .todo-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+    </style>
+
+</head>
+<body ng-app="toDoApp" ng-controller="toDoCtrl">
+    
+    <h2>To Do List</h2>
+    <input type="text" ng-model="newTask" placeholder="Add a new task">
+    <button ng-click="addTask()">Add</button>
+
+    <ul class="todo-list">
+        <li ng-repeat="task in tasks">
+            {{task.name}}
+            <span ng-show="task.editing">
+                <input type="text" ng-model="task.name" ng-blur="saveTask(task)">
+            </span>
+            <span ng-show="!task.editing">
+                <button ng-click="editTask(task)">Edit</button>
+                <button ng-click="removeTask(task)">Delete</button>
+            </span>
+        </li>
+    </ul>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script>
+
+        var app = angular.module("toDoApp",[]);
+        app.controller("toDoCtrl",function($scope){
+            $scope.tasks = [];
+
+            $scope.addTask = function(){
+                if ($scope.newTask) {
+                    $scope.tasks.push({ name: $scope.newTask, editing: false });
+                    $scope.newTask = "";
+                }
+            };
+
+            $scope.editTask = function(task){
+                task.editing = true;
+            };
+
+            $scope.saveTask = function(task){
+                task.editing = false;
+            };
+
+            $scope.removeTask = function(task){
+                const index = $scope.tasks.indexOf(task);
+                $scope.tasks.splice(index,1);
+            };
+        });
+
+    </script>
+</body>
+</html>

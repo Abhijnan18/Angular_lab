@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <style>*{text-align:center}.l{display:flex;justify-content:center;align-items:center;flex-direction:column;gap:10px}</style>
+</head>
+<body ng-controller="ctrl">
+    <h2>To Do List</h2>
+    <input type="text" ng-model="task" placeholder="Add a new task">
+    <button ng-click="add()">Add</button>
+    <ul class="l" ng-repeat="t in tasks">
+        <li>{{t.task}} <button ng-click="edit(t)">Edit</button> <button ng-click="remove(t)">Delete</button></li>
+        <input type="text" ng-if="t.edit" ng-model="t.task" ng-blur="save(t)">
+    </ul>
+    <script>
+        angular.module("app",[]).controller("ctrl",function($scope){
+            $scope.tasks = [];
+            $scope.add = function(){ if ($scope.task) { $scope.tasks.push({ task: $scope.task, edit: false }); $scope.task = ""; }};
+            $scope.edit = function(t){ t.edit = true; };
+            $scope.save = function(t){ t.edit = false; };
+            $scope.remove = function(t){ $scope.tasks.splice($scope.tasks.indexOf(t),1); };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+11. Create AngularJS application to convert student details to Uppercase using
+angular filters. Note: The default details of students may be included in the
+program.
+<html ng-app="app">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <body ng-controller="ctrl">
+    <h2>Student Names</h2>
+    <h3>Original Names:</h3>
+    <ul>
+      <li ng-repeat="(name, _) in names">{{ name }}</li>
+    </ul>
+    <h3>Names in Uppercase:</h3>
+    <ul>
+      <li ng-repeat="(name, _) in names">{{ name | uppercase }}</li>
+    </ul>
+    <script>
+      var app = angular.module("app", []);
+      app.controller("ctrl", function ($scope) {
+        $scope.names = { Raj: "", Ram: "", Sam: "" };
+      });
+    </script>
+  </body>
+</html>

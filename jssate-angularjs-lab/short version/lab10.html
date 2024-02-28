@@ -1,0 +1,21 @@
+<html ng-app="app">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <body ng-controller="ctrl">
+    <h2>Item Collection</h2>
+    Add New Item: <input type="text" ng-model="newItem" />
+    <button ng-click="items[newItem]='';newItem=''">Add Item</button>
+    <ul>
+      <li ng-repeat="(item, _) in items">
+        {{ item }}
+        <button ng-click="delete items[item]">Remove</button>
+      </li>
+    </ul>
+    <p>Total Items: {{ items.length }}</p>
+    <script>
+      var app = angular.module("app", []);
+      app.controller("ctrl", function ($scope) {
+        $scope.items = { "Item 1": "", "Item 2": "", "Item 3": "" };
+      });
+    </script>
+  </body>
+</html>

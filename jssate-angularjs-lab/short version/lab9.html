@@ -1,0 +1,31 @@
+9. Create an AngularJS application that displays a list of employees and their
+salaries. Allow users to search for employees by name and salary. Note: Employee
+details may be included in the program.
+<html ng-app="app">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body ng-controller="ctrl">
+    <input type="text" ng-model="searchName" />
+    <input type="number" ng-model="searchSalary" />
+    <ul>
+      <li
+        ng-repeat="employee in employees | filter: {name: searchName, salary: searchSalary}"
+      >
+        {{ employee.name }} - Salary: Rs{{ employee.salary }}
+      </li>
+    </ul>
+    <script>
+      angular.module("app", []).controller("ctrl", function ($scope) {
+        $scope.employees = [
+          { name: "Ram", salary: 50000 },
+          { name: "abi", salary: 60000 },
+          { name: "sam", salary: 75000 },
+          { name: "raj", salary: 55000 },
+        ];
+        $scope.searchName = "";
+        $scope.searchSalary = "";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program 4 | AngularJS</title>
+
+    <style>
+        * {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="factAndSquareApp" ng-controller="factAndSquareCtrl">
+        <h2>Factorial and Square Calculator</h2>
+        <input type="number" ng-model="num">
+        <button ng-click="calculate()">Calculate</button>
+        <p>Factorial : {{fresult}} </p>
+        <p>Square : {{sresult}} </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script>
+        var app = angular.module("factAndSquareApp",[]);
+        app.controller("factAndSquareCtrl",function($scope){
+            $scope.num = $scope.sresult = 0;
+            $scope.fresult = 1;
+
+            $scope.calculate = function(){
+                if ($scope.num === 0){
+                    $scope.fresult = 1;
+                    $scope.sresult = 0;
+                }
+                else {
+                    $scope.fresult = 1;
+                    for (let i = 2; i <= $scope.num; i++)
+                        $scope.fresult = $scope.fresult * i;
+                    
+                    $scope.sresult = $scope.num * $scope.num;
+                }
+            };
+        });
+    </script>
+</body>
+</html>

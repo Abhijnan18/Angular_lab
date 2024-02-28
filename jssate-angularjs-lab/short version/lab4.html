@@ -1,0 +1,27 @@
+4. Write an Angular JS application that can calculate factorial and compute 
+square based on given user input.
+<!DOCTYPE html>
+<html lang="en" ng-app="factAndSquareApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Program 4 | AngularJS</title>
+    <style>*{text-align:center}</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script>
+        angular.module("factAndSquareApp", []).controller("factAndSquareCtrl", function($scope) {
+            $scope.calculate = function() {
+                $scope.fresult = $scope.num > 0 ? [...Array($scope.num)].reduce((a, _, i) => a * (i + 1), 1) : 1;
+                $scope.sresult = $scope.num * $scope.num;
+            };
+        });
+    </script>
+</head>
+<body ng-controller="factAndSquareCtrl">
+    <h2>Factorial and Square Calculator</h2>
+    <input type="number" ng-model="num">
+    <button ng-click="calculate()">Calculate</button>
+    <p>Factorial: {{fresult}}</p>
+    <p>Square: {{sresult}}</p>
+</body>
+</html>
+

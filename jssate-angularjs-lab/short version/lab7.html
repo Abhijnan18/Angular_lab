@@ -1,0 +1,45 @@
+7.Write an AngularJS program to create a simple CRUD application (Create, Read,
+Update, and Delete) for managing users.
+<html ng-app="app">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  </head>
+  <body ng-controller="ctrl">
+    <form ng-submit="addUser()">
+      <input type="text" ng-model="name" placeholder="Name" required />
+      <input type="number" ng-model="age" placeholder="Age" required />
+      <button>Add User</button>
+    </form>
+    <table>
+      <tr ng-repeat="user in users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.age }}</td>
+        <td>
+          <button ng-click="editUser(user)">Edit</button>
+          <button ng-click="deleteUser(user)">Delete</button>
+        </td>
+      </tr>
+    </table>
+    <script>
+      angular.module("app", []).controller("ctrl", function ($scope) {
+        $scope.users = [
+          { name: "Ram", age: 25 },
+          { name: "Sam", age: 30 },
+        ];
+        $scope.addUser = function () {
+          $scope.users.push({ name: $scope.name, age: $scope.age });
+          $scope.name = $scope.age = "";
+        };
+        $scope.editUser = function (user) {
+          var i = $scope.users.indexOf(user);
+          var n = prompt("Enter updated name:", user.name);
+          var a = prompt("Enter updated age:", user.age);
+          if (n && a) $scope.users.splice(i, 1, { name: n, age: parseInt(a) });
+        };
+        $scope.deleteUser = function (user) {
+          $scope.users.splice($scope.users.indexOf(user), 1);
+        };
+      });
+    </script>
+  </body>
+</html>

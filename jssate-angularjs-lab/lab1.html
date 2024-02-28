@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program 1 | AngularJS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    
+    <style>
+        * {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <p>First Name : <input type="text" ng-model="firstName"></p>
+        <p>Last Name : <input type="text" ng-model="lastName"></p>
+        <p>Full Name : {{firstName + " " + lastName}}</p>
+    </div>
+
+    <script>
+        var app = angular.module("myApp",[]);
+        app.controller("myCtrl",function($scope){
+            $scope.firstName = "Unnath";
+            $scope.lastName = "Fiezen";
+        });
+    </script>
+</body>
+</html>

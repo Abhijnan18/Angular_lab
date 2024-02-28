@@ -1,0 +1,33 @@
+3.Develop a simple Angular JS calculator application that can perform 
+basic mathematical operations (addition, subtraction, multiplication, 
+division) based on user input.
+
+<!DOCTYPE html>
+<html lang="en" ng-app="calculatorApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Program 3 | AngularJS</title>
+    <style>*{text-align:center}</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script>
+        angular.module("calculatorApp", []).controller("calculatorCtrl", function($scope) {
+            $scope.calculate = function() {
+                $scope.result = $scope.num2 === 0 && $scope.operator === '/' ? "Cannot divide by zero" : eval($scope.num1 + $scope.operator + $scope.num2);
+            };
+        });
+    </script>
+</head>
+<body ng-controller="calculatorCtrl">
+    <h1>Simple Calculator App</h1>
+    <input type="number" ng-model="num1">
+    <input type="number" ng-model="num2">
+    <select ng-model="operator">
+        <option value="+">Addition</option>
+        <option value="-">Subtraction</option>
+        <option value="*">Multiplication</option>
+        <option value="/">Division</option>
+    </select>
+    <button ng-click="calculate()">Calculate</button>
+    <p>Result : {{result}} </p>
+</body>
+</html>
